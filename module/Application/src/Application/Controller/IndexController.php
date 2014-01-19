@@ -14,8 +14,18 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-    public function indexAction()
-    {
-        return new ViewModel();
-    }
+	public function indexAction()
+	{
+        $serviceLocator = $this->getServiceLocator();
+        $config = $serviceLocator->get('config');
+        return array(
+                    'version'=> $config['application']['version'], 
+                    'applicationName' => $config['application']['name']
+                );
+	}
+	
+	public function aboutAction()
+	{
+		return array();
+	}
 }
